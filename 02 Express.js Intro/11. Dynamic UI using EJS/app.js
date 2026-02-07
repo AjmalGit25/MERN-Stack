@@ -13,6 +13,9 @@ const rootDir = require('./utils/pathUtil');
 // Express App Initialization
 const app = express();
 
+app.set('view engine', 'ejs'); // Setting EJS as the templating engine
+app.set('views', 'views');      // Setting the views directory
+
 // Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded());
 
@@ -27,7 +30,7 @@ app.use(express.static(path.join(__dirname, './public'))); // Serving Static Fil
 app.use(homeRouter);
 app.use(serviceRouter);
 app.use((req, res, next) => {     // 404 Handler
-  res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
+  res.status(404).render('404', {pageTitle: 'Page Not Found'});
 });
 
 const PORT = 5000;
