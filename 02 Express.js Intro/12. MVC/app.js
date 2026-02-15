@@ -38,5 +38,5 @@ app.use(pageNotFoundController);
 const PORT = 5000;
 // Starts the server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on address http://localhost:${PORT}`);
 });
