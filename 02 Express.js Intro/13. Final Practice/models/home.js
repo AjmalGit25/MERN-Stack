@@ -1,14 +1,15 @@
+// --- Data management --- //
+
 // Core Modules
 const fs = require('fs');
 const path = require('path');
 const rootDir = require('../utils/pathUtil');
-const { error } = require('console');
 
 module.exports = class Home {
   constructor(houseName, price, locationName, rating, photoUrl) {
     this.houseName = houseName;
     this.price = price;
-    this.location = locationName;
+    this.locationName = locationName;
     this.rating = rating;
     this.photoUrl = photoUrl;
   }
@@ -23,7 +24,7 @@ module.exports = class Home {
       });
     });
   }
-  
+
   static getAllHomes(callback) {            // registeredHomes is defined in the callback of fs.readFile, no need to define it here
     const homeDataPath = path.join(rootDir, 'data', 'homes.json');
     fs.readFile(homeDataPath, (err, data) => {
