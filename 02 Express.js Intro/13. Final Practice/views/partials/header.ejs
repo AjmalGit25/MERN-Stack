@@ -1,13 +1,26 @@
+<!-- Navigation Panel -->
 <header class="w-full bg-sky-500 text-white font-medium p-4 shadow-md">
   <nav class="container mx-auto flex justify-between items-center">
     <ul class="flex space-x-4">
       <li>
-        <a href="/" class="<%= currPage === 'home' ? 
-        'bg-sky-700' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Home</a>
+        <a href="/" class="<%= currPage === 'index' ? 
+        'bg-sky-700' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">airbnb</a>
+      </li>
+      <li>
+        <a href="/home" class="<%= currPage === 'home' ? 
+        'bg-sky-700' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Home-List</a>
+      </li>
+      <li>
+        <a href="/favourites" class="<%= currPage === 'favourites' ? 
+        'bg-sky-700' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Favourites</a>
       </li>
       <li>
         <a href="/bookings" class="<%= currPage === 'bookings' ? 
         'bg-sky-700' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Bookings</a>
+      </li>
+      <li>
+        <a href="/admin-home-list" class="<%= currPage === 'admin-home' ? 
+        'bg-sky-700' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Admin Home</a>
       </li>
       <li>
         <a href="/add-home" class="<%= currPage === 'add-home' ? 

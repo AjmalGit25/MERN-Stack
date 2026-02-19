@@ -6,8 +6,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 // Local Modules
-const homeRouter = require("./router/userRouter");
-const serviceRouter = require("./router/serviceRouter");    // Importing single export from serviceRouter
+const homeRouter = require("./router/storeRouter");
+const serviceRouter = require("./router/adminRouter");    // Importing single export from serviceRouter
 const pageNotFoundController = require('./controllers/404');
 const rootDir = require('./utils/pathUtil');
 

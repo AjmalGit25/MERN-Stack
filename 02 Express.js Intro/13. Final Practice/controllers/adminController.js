@@ -19,19 +19,12 @@ exports.postAddHome = (req, res, next) => {
   });
 }
 
-exports.getListHomes = (req, res, next) => {
-  const registeredHomes = Home.getAllHomes(registeredHomes => {
-    res.render('./store/home-list', {
+exports.getAdminHomes = (req, res, next) => {
+  Home.getAllHomes(registeredHomes => {
+    res.render('./admin/admin-home-list', {
       registeredHomes: registeredHomes,
-      pageTitle: 'airbnb Home',
-      currPage: 'home'
+      pageTitle: 'Admin Homes List',
+      currPage: 'admin-home'
     });
-  });
-}
-
-exports.getBookings = (req, res, next) => {
-  res.render('./store/bookings',{
-    pageTitle: 'airbnb Bookings',
-    currPage: 'bookings'
   });
 }
