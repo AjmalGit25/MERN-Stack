@@ -9,7 +9,7 @@ const storeRouter = express.Router();
 // Router for homepage / landing page
 storeRouter.get("/", storeController.getIndex);
 
-storeRouter.get("/home", storeController.getListHomes);
+storeRouter.get("/homes", storeController.getListHomes);
 storeRouter.get("/bookings", storeController.getBookings);
 storeRouter.get("/favourites", storeController.getFavouriteList);
 

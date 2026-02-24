@@ -15,7 +15,7 @@ exports.getListHomes = (req, res, next) => {
     res.render('./store/home-list', {
       registeredHomes: registeredHomes,
       pageTitle: 'Homes List',
-      currPage: 'home'
+      currPage: 'homes'
     });
   });
 }
