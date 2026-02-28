@@ -14,20 +14,20 @@
           <input type="hidden" name="id" value="<%= editing ? home.id : '' %>">
           <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
             type="text" id="houseName" name="houseName" value="<%= editing ? home.houseName : '' %>"
-            placeholder="Enter Your House Name"><br>
+            placeholder="Enter Your House Name" required><br>
           <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
             type="text" id="price" name="price" value="<%= editing ? home.price : '' %>"
-            placeholder="Price Per Night"><br>
+            placeholder="Price Per Night" required><br>
           <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
             type="text" id="locationName" name="locationName" value="<%= editing ? home.locationName : '' %>"
-            placeholder="Location"><br>
+            placeholder="Location" required><br>
           <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
-            type="text" id="rating" name="rating" value="<%= editing ? home.rating : '' %>" placeholder="Rating"><br>
+            type="text" id="rating" name="rating" value="<%= editing ? home.rating : '' %>" placeholder="Rating" required><br>
           <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
             type="text" id="photo" name="photoUrl" value="<%= editing ? home.photoUrl : '' %>"
-            placeholder="Photo URL"><br>
+            placeholder="Photo URL" required><br>
           <input class="text-white font-medium bg-sky-500 py-2 px-4 w-full rounded-sm hover:bg-sky-600 cursor-pointer" type="submit"
-            value="<%= editing ? 'Update Home' : 'Add Home' %>">
+            value="<%= editing ? 'Update Home' : 'Add Your Home' %>">
         </form>
       </main>
 
