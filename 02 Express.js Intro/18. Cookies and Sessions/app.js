@@ -3,11 +3,15 @@ const path = require('path');
 
 // External Modules
 const express = require('express');
+const session = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(session);
+const DB_URL = "mongodb+srv://zoya:root@daliustech.nr4dmbg.mongodb.net/airbnb?appName=DaliusTech";
 const bodyParser = require('body-parser');
 
 // Local Modules
-const homeRouter = require("./router/storeRouter");
-const serviceRouter = require("./router/adminRouter");    // Importing single export from serviceRouter
+const storeRouter = require("./router/storeRouter");
+const adminRouter = require("./router/adminRouter");
+const authRouter = require("./router/authRouter");
 const pageNotFoundController = require('./controllers/404');
 const rootDir = require('./utils/pathUtil');
 const { default: mongoose } = require('mongoose');
@@ -18,8 +22,25 @@ const app = express();
 app.set('view engine', 'ejs');  // Setting EJS as the templating engine
 app.set('views', 'views');      // Setting the views directory
 
-// Parse URL-encoded bodies (as sent by HTML forms)
 app.use(bodyParser.urlencoded());
+
+const store = new MongoDBStore({
+  uri: DB_URL,
+  collection: 'sessions'
+});
+
+app.use(session({
+  secret: 'katty',
+  resave: false,
+  saveUninitialized: true,
+  store: store
+}));
+
+app.use((req, res, next) => {
+  req.isLoggedIn = req.session.isLoggedIn;
+  console.log('Session: ', req.session);
+  next();
+})
 
 // Middleware for logging requests
 app.use((req, res, next) => {
@@ -30,14 +51,14 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(rootDir, './public')));  // Serving Static Files
 // app.use(express.static('public'));                     // (Alternative way)
 
-app.use(homeRouter);
-app.use(serviceRouter);
+app.use(storeRouter);
+app.use(adminRouter);
+app.use(authRouter);
 
 // 404 handler (should be last)
 app.use(pageNotFoundController);
 
-const PORT = 4000;
-const DB_URL = "mongodb+srv://zoya:root@daliustech.nr4dmbg.mongodb.net/airbnb?appName=DaliusTech";
+const PORT = 3000;
 
 mongoose.connect(DB_URL).then(() => {
   console.log("Connected to MongoDB");

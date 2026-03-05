@@ -6,7 +6,8 @@ exports.getIndex = (req, res, next) => {
     res.render('./store/index', {
       registeredHomes: registeredHomes,
       pageTitle: 'airbnb Home',
-      currPage: 'index'
+      currPage: 'index',
+      isLoggedIn: req.isLoggedIn
     });
   });
 }
@@ -16,7 +17,8 @@ exports.getListHomes = (req, res, next) => {
     res.render('./store/home-list', {
       registeredHomes: registeredHomes,
       pageTitle: 'Homes List',
-      currPage: 'homes'
+      currPage: 'homes',
+      isLoggedIn: req.isLoggedIn
     });
   });
 }
@@ -31,7 +33,8 @@ exports.getFavouriteList = (req, res, next) => {
       res.render('./store/favourite-list', {
         favouriteHomes: favouriteHomes,
         pageTitle: 'Favourite Homes List',
-        currPage: 'favourites'
+        currPage: 'favourites',
+        isLoggedIn: req.isLoggedIn
       });
     });
 }
@@ -48,6 +51,7 @@ exports.postAddToFavourite = (req, res, next) => {
         console.log("Home added to Favourite successfully!");
       });
     }
+    req.isLoggedIn = true;
     res.redirect("/favourites");
   });
 }
@@ -59,6 +63,7 @@ exports.postRemoveFavourite = (req, res, next) => {
   }).catch(err => {
     console.log("Error while removing home from Favourite!", err);
   }).finally(() => {
+    req.isLoggedIn = true;
     res.redirect("/favourites");
   });
 }
@@ -75,7 +80,8 @@ exports.getHomeDetails = (req, res, next) => {
       res.render('./store/home-detail', {
         home: home,
         pageTitle: 'Home Details',
-        currPage: 'homes'
+        currPage: 'homes',
+        isLoggedIn: req.isLoggedIn
       });
     }
   });
@@ -84,6 +90,7 @@ exports.getHomeDetails = (req, res, next) => {
 exports.getBookings = (req, res, next) => {
   res.render('./store/bookings', {
     pageTitle: 'airbnb Bookings',
-    currPage: 'bookings'
+    currPage: 'bookings',
+    isLoggedIn: req.isLoggedIn
   });
 }

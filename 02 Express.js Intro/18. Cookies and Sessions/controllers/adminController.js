@@ -4,7 +4,8 @@ exports.getAddHome = (req, res, next) => {
   res.render('./admin/edit-home', {
     pageTitle: 'Add New Home',
     currPage: 'add-home',
-    editing: false
+    editing: false,
+    isLoggedIn: req.isLoggedIn
   });
 }
 
@@ -23,7 +24,8 @@ exports.getEditHome = (req, res, next) => {
       pageTitle: 'Edit Home',
       currPage: 'admin-home',
       editing: editing,
-      home: home
+      home: home,
+      isLoggedIn: req.isLoggedIn
     });
   }
   );
@@ -37,6 +39,7 @@ exports.postAddHome = (req, res, next) => {
   }).catch((err) => {
     console.log("Error while adding home!", err);
   });
+  req.isLoggedIn = true;
   res.redirect("/admin-home-list");
 }
 
@@ -57,6 +60,7 @@ exports.postEditHome = (req, res, next) => {
     }).catch((err) => {
       console.log("Error while updating the home!", err);
     });
+    req.isLoggedIn = true;
     res.redirect("/admin-home-list");
   }).catch(err => {
     console.log("Error while finding home!", err);
@@ -72,6 +76,7 @@ exports.postDeleteHome = (req, res, next) => {
   }).catch(err => {
     console.log("Error while deleting the home!", err);
   });
+  req.isLoggedIn = true;
   res.redirect("/admin-home-list");
 }
 
@@ -80,7 +85,8 @@ exports.getAdminHomes = (req, res, next) => {
     res.render('./admin/admin-home-list', {
       registeredHomes: registeredHomes,
       pageTitle: 'Admin Homes List',
-      currPage: 'admin-home'
+      currPage: 'admin-home',
+      isLoggedIn: req.isLoggedIn
     });
   });
 }
