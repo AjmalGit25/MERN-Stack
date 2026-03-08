@@ -2,43 +2,55 @@
 
   <body class="bg-blue-500">
     <%- include('../partials/header') %>
-      <main class="container my-10 w-85 mx-auto rounded-lg p-6 bg-white shadow-md">
+      <main class="container my-10 w-115 mx-auto rounded-lg p-6 bg-white shadow-md">
         <h1 class="text-3xl font-bold text-center text-gray-700 mb-2">Create Your Account</h1>
         <hr class="mb-4 border-gray-300">
-        <h3 class="text-xl text-black mb-6 text-gray-700">Sign Up to Get Started</h3>
+        <h3 class="text-xl mb-6 text-gray-700">Sign Up to Get Started</h3>
 
-        <form action="/signup" method="POST" class="max-w-md">
+        <form action="/signup" method="POST">
           <!-- Showing Validation Errors -->
-          <% if (errors.length> 0) { %>
+          <% if (errors.length > 0) { %>
             <div class="mb-4 bg-red-100 border border-red-300 text-red-500 px-4 py-3 rounded relative" role="alert">
               <strong class="font-bold">Error!</strong>
-              <span class="block sm:inline pl-2">
-                <% errors.forEach(error=> { %>
+              <span class="block pl-2">
+                <% errors.forEach(error => { %>
                   <li>
                     <%= error %>
                   </li>
                   <% }); %>
               </span>
               <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                <i class="fa-solid fa-xmark text-red-500"></i>
+                <i class="fa-solid fa-xmark text-red-500 cursor-pointer" onclick="this.parentElement.parentElement.style.display='none'"></i>
               </span>
             </div>
             <% } %>
 
-            <!-- Inputs Starts Here -->
-              <div class="relative w-full">
+              <!-- Inputs Starts Here -->
+              <div class="relative w-full flex gap-x-4">
+                <!-- First Name -->
                 <input
                   class="border border-gray-300 rounded-full py-3 pl-12 mb-4 w-full focus:outline-none focus:border-sky-500"
-                  type="text" id="name" name="name" placeholder="Full Name" value="<%= oldInput.name %>" required>
+                  type="text" id="firstName" name="firstName" placeholder="First Name" value="<%= oldInput.firstName %>"
+                  required>
                 <div class="absolute inset-y-1 left-4 flex items-center pointer-events-none">
+                  <i class="fa-regular fa-address-card text-gray-300 pb-4 text-xl"></i>
+                </div>
+                <!-- Last Name -->
+                <input
+                  class="border border-gray-300 rounded-full py-3 pl-12 mb-4 w-full focus:outline-none focus:border-sky-500"
+                  type="text" id="lastName" name="lastName" placeholder="Last Name" value="<%= oldInput.lastName %>"
+                  required>
+                <div class="absolute inset-y-1 right-40 flex items-center pointer-events-none">
                   <i class="fa-regular fa-address-card text-gray-300 pb-4 text-xl"></i>
                 </div>
               </div>
 
+              <!-- Email -->
               <div class="relative w-full">
                 <input
                   class="border border-gray-300 rounded-full py-3 pl-12 mb-4 w-full focus:outline-none focus:border-sky-500"
-                  type="text" id="email" name="email" placeholder="Email Address" value="<%= oldInput.email %>" required>
+                  type="text" id="email" name="email" placeholder="Email Address" value="<%= oldInput.email %>"
+                  required>
                 <div class="absolute inset-y-1 left-4 flex items-center pointer-events-none">
                   <i class="fa-regular fa-envelope text-gray-300 pb-4 text-xl"></i>
                 </div>
@@ -52,6 +64,7 @@
                   <i class="fa-solid fa-lock text-gray-300 pb-4 text-xl"></i>
                 </div>
               </div>
+              <!-- Confirm Password -->
               <div class="relative w-full">
                 <input
                   class="border border-gray-300 rounded-full py-3 pl-12 mb-4 w-full focus:outline-none focus:border-sky-500"
@@ -66,16 +79,16 @@
                 <p class="text-black text-sm mb-2">I want to register as:</p>
                 <div class="flex gap-4">
                   <label for="guest"><input id="guest" type="radio" name="userType" value="guest" class="mr-2"><span
-                      class="font-medium">Guest</span></label>
+                      class="font-medium cursor-pointer">Guest</span></label>
                   <label for="host"><input id="host" type="radio" name="userType" value="host" class="mr-2"><span
-                      class="font-medium">Host</span></label>
+                      class="font-medium cursor-pointer">Host</span></label>
                 </div>
               </div>
 
               <!-- Terms and Conditions -->
               <div class="mb-4">
                 <label class="text-gray-700 text-sm" for="terms"><input type="checkbox" name="termsAccepted"
-                    id="termsAccepted" required> I agree to the
+                    id="termsAccepted" class="cursor-pointer size-4" required> I agree to the
                   <a href="#" class="text-blue-500">Terms and Conditions</a></label>
               </div>
 

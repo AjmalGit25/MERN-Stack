@@ -5,36 +5,35 @@
     <ul class="md:flex md:space-x-4 space-y-4">
 
       <!-- Index -->
-      <% if (!isLoggedIn) { %>
-        <li>
-          <a href="/" class="<%= currPage === 'index' ? 
+      <li>
+        <a href="/" class="<%= currPage === 'index' ? 
         'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300"><i
-              class="fa-brands fa-airbnb"></i> AirBnB</a>
-        </li>
-        <% } %>
+            class="fa-brands fa-airbnb"></i> AirBnB</a>
+      </li>
 
+      <% if (isLoggedIn) { %>
+        <% if (user && user.userType ==='guest' ) { %>
           <!-- Home-List -->
-          <% if (isLoggedIn) { %>
-            <li>
-              <a href="/homes"
-                class="<%= currPage === 'homes' ? 
+          <li>
+            <a href="/homes"
+              class="<%= currPage === 'homes' ? 
         'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Home-List</a>
-            </li>
+          </li>
 
-            <!-- Favourites -->
-            <li>
-              <a href="/favourites"
-                class="<%= currPage === 'favourites' ? 
+          <!-- Favourites -->
+          <li>
+            <a href="/favourites"
+              class="<%= currPage === 'favourites' ? 
         'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Favourites</a>
-            </li>
+          </li>
 
-            <!-- Bookings -->
-            <li>
-              <a href="/bookings"
-                class="<%= currPage === 'bookings' ? 
+          <!-- Bookings -->
+          <li>
+            <a href="/bookings"
+              class="<%= currPage === 'bookings' ? 
         'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Bookings</a>
-            </li>
-
+          </li>
+          <% } else { %>
             <!-- Admin Home -->
             <li>
               <a href="/admin-home-list" class="<%= currPage === 'admin-home' ? 
@@ -49,6 +48,7 @@
                 Home</a>
             </li>
             <% } %>
+              <% } %>
     </ul>
 
     <!-- Login/Logout -->
@@ -56,7 +56,8 @@
       <div class="absolute top-0 right-20 mt-4 mr-2">
         <a href="/signup"
           class="<%= currPage === 'signup' ? 
-        'bg-sky-700 shadow-black shadow-md border-none' : 'hover:bg-sky-400' %> text-white text-md font-medium border p-2 px-4 rounded-md  shadow-md hover:bg-sky-400">Sign Up</a>
+        'bg-sky-700 shadow-black shadow-md border-none' : 'hover:bg-sky-400' %> text-white text-md font-medium border p-2 px-4 rounded-md hover:bg-sky-400">Sign
+          Up</a>
       </div>
       <div class="absolute top-0 right-0 mt-4 mr-2">
         <a href="/login"

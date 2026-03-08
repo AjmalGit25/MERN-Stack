@@ -5,7 +5,8 @@ exports.getAddHome = (req, res, next) => {
     pageTitle: 'Add New Home',
     currPage: 'add-home',
     editing: false,
-    isLoggedIn: req.isLoggedIn
+    isLoggedIn: req.isLoggedIn,
+    user: req.session.user
   });
 }
 
@@ -16,19 +17,31 @@ exports.getEditHome = (req, res, next) => {
   Home.findById(homeId).then(home => {
     if (!home) {
       console.log("Home not found for editing!");
-      return res.redirect("/admin-home-list");
+      return res.redirect("/admin/admin-home-list");
     }
 
     console.log("Home found for editing: ", home);
     res.render('./admin/edit-home', {
-      pageTitle: 'Edit Home',
+      pageTitle: 'Edit Your Home',
       currPage: 'admin-home',
       editing: editing,
       home: home,
-      isLoggedIn: req.isLoggedIn
+      isLoggedIn: req.isLoggedIn,
+      user: req.session.user
     });
-  }
-  );
+  });
+}
+
+exports.getAdminHomes = (req, res, next) => {
+  Home.find().then(registeredHomes => {
+    res.render('./admin/admin-home-list', {
+      registeredHomes: registeredHomes,
+      pageTitle: 'Admin Homes List',
+      currPage: 'admin-home',
+      isLoggedIn: req.isLoggedIn,
+      user: req.session.user
+    });
+  });
 }
 
 exports.postAddHome = (req, res, next) => {
@@ -39,14 +52,12 @@ exports.postAddHome = (req, res, next) => {
   }).catch((err) => {
     console.log("Error while adding home!", err);
   });
-  req.isLoggedIn = true;
-  res.redirect("/admin-home-list");
+
+  res.redirect("/admin/admin-home-list");
 }
 
 exports.postEditHome = (req, res, next) => {
   const { houseName, price, locationName, rating, photoUrl, description, id } = req.body;
-
-  const home = new Home({ houseName, price, locationName, rating, photoUrl, description, _id: id });
 
   Home.findById(id).then(home => {
     home.houseName = houseName;
@@ -60,8 +71,8 @@ exports.postEditHome = (req, res, next) => {
     }).catch((err) => {
       console.log("Error while updating the home!", err);
     });
-    req.isLoggedIn = true;
-    res.redirect("/admin-home-list");
+
+    res.redirect("/admin/admin-home-list");
   }).catch(err => {
     console.log("Error while finding home!", err);
   });
@@ -70,23 +81,11 @@ exports.postEditHome = (req, res, next) => {
 exports.postDeleteHome = (req, res, next) => {
   const homeId = req.params.homeId;
   console.log("Home id to delete: ", homeId);
-  
+
   Home.findByIdAndDelete(homeId).then(result => {
     console.log("Home deleted successfully!", result);
+    res.redirect("/admin/admin-home-list");
   }).catch(err => {
     console.log("Error while deleting the home!", err);
-  });
-  req.isLoggedIn = true;
-  res.redirect("/admin-home-list");
-}
-
-exports.getAdminHomes = (req, res, next) => {
-  Home.find().then(registeredHomes => {
-    res.render('./admin/admin-home-list', {
-      registeredHomes: registeredHomes,
-      pageTitle: 'Admin Homes List',
-      currPage: 'admin-home',
-      isLoggedIn: req.isLoggedIn
-    });
   });
 }

@@ -1,14 +1,11 @@
 // External Modules 
 const express = require('express');
-
-// Local Modules
-const storeController = require('../controllers/storeController'); // Importing all exports from home controller
-
 const storeRouter = express.Router();
 
-// Router for homepage / landing page
-storeRouter.get("/", storeController.getIndex);
+// Local Modules
+const storeController = require('../controllers/storeController');
 
+storeRouter.get("/", storeController.getIndex);
 storeRouter.get("/homes", storeController.getListHomes);
 storeRouter.get("/homes/:homeId", storeController.getHomeDetails);
 storeRouter.get("/bookings", storeController.getBookings);
