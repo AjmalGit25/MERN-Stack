@@ -1,0 +1,14 @@
+<form action="/favourites" method="POST">
+  <input type="hidden" name="id" value="<%= home._id %>" />
+  <!-- Make heart red when already in favourites -->
+  <% if (favouriteHomes.some(fav => fav.equals(home._id))) { %>
+  <button type="submit">
+    <i class="fa-solid fa-heart text-red-500 text-2xl mt-2 cursor-pointer"></i>
+  </button>
+  <% } else { %>
+  <button type="submit">
+    <i class="fa-solid fa-heart text-gray-500 text-2xl mt-2 cursor-pointer"></i>
+  </button>
+  <% } %>
+  <!-- Yet heart is not red when already in favourites -->
+</form>
