@@ -17,6 +17,7 @@ exports.getIndex = (req, res, next) => {
 exports.getHomes = async (req, res, next) => {
   const userId = req.session.user._id;
   const user = await User.findById(userId).populate('favourites');
+  
   Home.find().then((registeredHomes) => {
     res.render("store/home-list", {
       registeredHomes: registeredHomes,

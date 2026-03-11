@@ -5,7 +5,9 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const { default: mongoose } = require('mongoose');
 const DB_PATH = "mongodb+srv://zoya:root@daliustech.nr4dmbg.mongodb.net/airbnb?appName=DaliusTech";
+const multer = require('multer');
 
 //Local Module
 const storeRouter = require("./routes/storeRouter")
@@ -13,7 +15,6 @@ const hostRouter = require("./routes/hostRouter")
 const authRouter = require("./routes/authRouter")
 const rootDir = require("./utils/pathUtil");
 const errorsController = require("./controllers/errors");
-const { default: mongoose } = require('mongoose');
 
 const app = express();
 
@@ -25,12 +26,53 @@ const store = new MongoDBStore({
   collection: 'sessions'
 });
 
+const randomString = (length) => {
+  const characters = 'abcdefghijklmnopqrstuvwxyz';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/')
+  },
+  filename: (req, file, cb) => {
+    cb(null, randomString(10) + '_' + file.originalname)
+  }
+})
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg' ||
+    file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+}
+
+const multerOptions = { storage, fileFilter }
+
 app.use(express.urlencoded());
+app.use(express.static(path.join(rootDir, 'public')));
+app.use(multer(multerOptions).single('photo'));
+
+app.use('/uploads', express.static(path.join(rootDir, 'uploads')));
+app.use('/host/uploads', express.static(path.join(rootDir, 'uploads')));
+app.use('/homes/uploads', express.static(path.join(rootDir, 'uploads')));
+
+
 app.use(session({
   secret: "KnowledgeGate AI with Complete Coding",
   resave: false,
-  saveUninitialized: true,
-  store
+  saveUninitialized: false,
+  store,
+  rolling: true,
+  cookie: {
+    maxAge: 1000 * 60 * 15
+  }
 }));
 
 app.use((req, res, next) => {
@@ -49,11 +91,9 @@ app.use("/host", (req, res, next) => {
 });
 app.use("/host", hostRouter);
 
-app.use(express.static(path.join(rootDir, 'public')))
-
 app.use(errorsController.pageNotFound);
 
-const PORT = 5000;
+const PORT = 7000;
 
 mongoose.connect(DB_PATH).then(() => {
   console.log('Connected to Mongo');
