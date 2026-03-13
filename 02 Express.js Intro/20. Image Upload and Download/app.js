@@ -67,12 +67,8 @@ app.use('/homes/uploads', express.static(path.join(rootDir, 'uploads')));
 app.use(session({
   secret: "KnowledgeGate AI with Complete Coding",
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   store,
-  rolling: true,
-  cookie: {
-    maxAge: 1000 * 60 * 15
-  }
 }));
 
 app.use((req, res, next) => {
