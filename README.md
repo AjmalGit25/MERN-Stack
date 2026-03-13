@@ -1,2 +1,3 @@
-# MERN-Stack
-Full Stack Web Development
+# MERN
+<hr>
+My Learning Repo journy of Full Stack Web Development
