@@ -1,6 +1,6 @@
 const http = require('http');
 
-// server created
+// server 
 const server = http.createServer((req, res) => {
   console.log(req.url, req.method, req.headers);
   // process.exit ();      // Stops event loop

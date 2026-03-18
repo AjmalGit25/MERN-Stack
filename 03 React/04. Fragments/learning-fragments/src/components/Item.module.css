@@ -1,0 +1,15 @@
+.list-content {
+  cursor: pointer;
+  font-weight: 500;
+  color: white;
+  background-color: #af0000;
+}
+
+.list-content:hover {
+  background-color: lightcoral;
+}
+
+.btnBuy {
+  float: right;
+  color: maroon;
+}

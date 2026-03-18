@@ -1,18 +1,29 @@
 import AppName from './components/AppName.jsx'
 import AddTodo from './components/AddTodo.jsx'
-import TodoItem1 from './components/TodoItem1.jsx'
-import TodoItem2 from './components/TodoItem2.jsx'
+import TodoItems from './components/TodoItems.jsx'
 import FooterName from './components/FooterName.jsx'
 import './App.css';
 
+const todoItems = [
+  {
+    name: "Buy Milk",
+    dueDate: "4/10/2023",
+  },
+  {
+    name: "Go to College",
+    dueDate: "4/10/2023",
+  },
+  {
+    name: "Like this video",
+    dueDate: "right now",
+  },
+];
+
 function App() {
-  return <center class="todo-container">
+  return <center className="todo-container">
     <AppName />
     <AddTodo />
-    <div className='items-container'>
-      <TodoItem1 />
-      <TodoItem2 />
-    </div>
+    <TodoItems todoItems={todoItems} />
     <FooterName />
   </center>
 }
