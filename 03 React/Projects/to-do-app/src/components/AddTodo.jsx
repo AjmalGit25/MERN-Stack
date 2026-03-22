@@ -1,7 +1,7 @@
 import "./AddTodo.module.css";
 import { useContext, useRef } from "react";
 import { BiSolidAlarmAdd } from "react-icons/bi";
-import { TodoItemsContext } from "../store/todoItemsStoreStore";
+import { TodoItemsContext } from "../store/todoItemsContext.jsx";
 
 function AddTodo() {
   const contextObj = useContext(TodoItemsContext);
@@ -17,7 +17,6 @@ function AddTodo() {
     if (todoName.trim() === "" || todoDate.trim() === "") {
       return;         // Don't save empty items
     }
-    console.log("New Item Added: ", todoName, todoDate);
 
     addToDoItem(todoName, todoDate);
 

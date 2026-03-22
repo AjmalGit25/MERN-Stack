@@ -1,10 +1,8 @@
 import { useContext } from "react";
-import { TodoItemsContext } from "../store/todoItemsStoreStore";
+import { TodoItemsContext } from "../store/todoItemsContext.jsx";
 import styles from "./FinishMessage.module.css";
 
 function FinishMessage() {
-  // const contextObj = useContext(TodoItemsContext);
-  // const todoItems = contextObj.todoItems;
   const { todoItems } = useContext(TodoItemsContext);
 
   if (todoItems.length === 0) {

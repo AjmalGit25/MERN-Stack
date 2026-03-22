@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TodoItemsContext } from "../store/todoItemsStoreStore";
+import { TodoItemsContext } from "../store/todoItemsContext.jsx";
 import Item from "./Item";
 import styles from "./TodoItems.module.css";
 
