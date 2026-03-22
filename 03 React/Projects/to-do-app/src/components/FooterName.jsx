@@ -1,8 +1,14 @@
+import { useContext } from "react";
+import { TodoItemsContext } from "../store/todoItemsStoreStore";
+
 function FooterName() {
+  const todoItems = useContext(TodoItemsContext);
+
+  if (todoItems.length === 0) {
+    return <h3 className="text-center text-primary my-5">👤 Great! Md Ajmal Hussain</h3>;
+  }
   return (
-    <div className="container text-center">
-     <h3 className="text-center text-primary my-3 border-bottom p-2 mx-2">Md Ajmal Hussain</h3>
-    </div>
+    <p className="text-center text-primary my-5 lead">Don't stop! You can do it!</p>
   );
 }
 

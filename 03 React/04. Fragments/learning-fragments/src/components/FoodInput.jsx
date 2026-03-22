@@ -1,8 +1,12 @@
 import styles from "./FoodInput.module.css";
 
-function FoodInput() {
+function FoodInput({ handleOnKeyDown }) {   // Props passed from App.jsx
   return (
-    <input type="text" className={`${styles.foodInput} form-control`} onChange={event => console.log(event)} placeholder="Enter Food Item here..." />
+    <input
+      type="text"
+      className={`${styles.foodInput} form-control`}
+      placeholder="Enter Food Item here..."
+      onKeyDown={handleOnKeyDown} />
   );
 }
 

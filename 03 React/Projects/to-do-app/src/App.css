@@ -1,17 +1,13 @@
-input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid gray;
-  border-radius: 5px;
+.todoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
 }
 
 button {
   min-width: 80px;
   width: 100%;
-}
-
-.kg-row {
-  background-color: #f5f5f5;
-  border-radius: 5px;
-  margin: 10px;
 }

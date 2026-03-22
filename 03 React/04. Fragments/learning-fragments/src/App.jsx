@@ -7,16 +7,27 @@ import FoodInput from "./components/FoodInput";
 import ErrorMessage from "./components/ErrorMessage";
 import Welcome from "./components/Welcome";
 import ParentComp from "./components/ParentComp";
+import { useState } from "react";
 
-const foodItems = ["Milk", "Green Vegetable", "Daal", "Roti", "Salad", "Ghee"];
-// const foodItems = [];
+// let foodItems = ["Milk", "Green Vegetable", "Daal", "Roti", "Salad", "Ghee", "Paneer"];
 
 const App = () => {
+  let [foodItems, setFoodItems] = useState([]);
+
+  const handleOnKeyDown = (event) => {
+    if (event.key === "Enter") {
+      let newFoodItem = event.target.value;
+      let newItems = [...foodItems, newFoodItem];
+      setFoodItems(newItems);
+      event.target.value = "";
+    }
+  };
+
   return (
     <>
       <Container>
         <AppName />
-        <FoodInput />
+        <FoodInput handleOnKeyDown={handleOnKeyDown} />
         <FoodItems items={foodItems} />
         <ErrorMessage items={foodItems} />
         <ParentComp />
@@ -27,4 +38,3 @@ const App = () => {
 };
 
 export default App;
-export { foodItems };
