@@ -1,0 +1,9 @@
+.list-content {
+  cursor: pointer;
+  font-weight: 500;
+  color: maroon;
+}
+
+.btnBuy {
+  float: right;
+}

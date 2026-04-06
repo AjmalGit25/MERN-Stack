@@ -1,0 +1,15 @@
+.appContainer {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.content {
+  /* flex: 1; */
+  width: 100%;
+}
+
+.postCard {
+  margin: 20px;
+  width: 30rem;
+}

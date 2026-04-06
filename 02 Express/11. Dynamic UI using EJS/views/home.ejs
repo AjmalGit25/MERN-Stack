@@ -1,0 +1,30 @@
+<%- include('partials/head') %>
+  </head>
+
+  <body class="flex flex-wrap flex-col items-center bg-slate-700">
+
+    <%- include('partials/header') %>
+      <p class="text-amber-500 mt-5">Explore our listings and find your perfect stay!</p>
+      <a href="/add-home"
+        class="text-green-500 border border-green-300 font-medium text-2xl no-underline my-5 pb-3 px-5 p-2 bg-black rounded-full hover:shadow-amber-300 hover:text-yellow-300 hover:shadow-lg hover:scale-103 transition-transform duration-300 block">Add
+        Home</a>
+
+      <h2 class="text-2xl text-amber-200 text-center border rounded-lg shadow bg-black w-full p-2 mb-2">Your added
+        homes:
+        <ul>
+          <% registeredHomes.forEach(home=> { %>
+            <li
+              class=" text-black border-b border-slate-500 my-3 py-2 w-full md:w-[75%] mx-auto bg-white rounded-lg shadow-sky-400 shadow-md flex justify-between">
+              <span class="text-left w-[70%] font-medium pl-2">
+                <%= home.houseName %>
+              </span>
+              <span class="text-right text-base pt-1 pr-2">
+                <%= home.location %>
+              </span>
+            </li>
+            <% }); %>
+        </ul>
+      </h2>
+  </body>
+
+  </html>

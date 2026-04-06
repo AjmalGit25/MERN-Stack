@@ -1,0 +1,72 @@
+<%- include('../partials/head') %>
+    </head>
+
+    <body>
+        <%- include('../partials/nav') %>
+            <main class="container bg-white shadow-lg rounded-lg p-8 mt-10 w-full mx-auto">
+
+                <div class="w-full flex flex-col lg:flex-row gap-6">
+                    <!-- Image Container -->
+                    <div class="rounded-lg overflow-hidden w-full">
+                        <img src="<%= home.photo %>" alt="<%= home.name %>" class="w-full h-96 object-cover">
+                    </div>
+
+                    <!-- Text Container -->
+                    <div class="flex flex-col w-full">
+                        <!-- House Name -->
+                        <h2 class="text-black text-3xl font-bold text-left mb-4">
+                            <%= home.houseName %>
+                        </h2>
+
+                        <div class="flex items-center justify-between space-x-10 mb-4">
+                            <!-- Rating Location Price -->
+                            <div class="flex items-center p-2 rounded-md">
+                                <p class="text-black font-medium">
+                                    <span class="text-yellow-500">⭐</span>
+                                    <%= home.rating %>/5
+                                </p>
+                            </div>
+                            <div class="flex items-center p-2 rounded-md">
+                                <p class="text-black font-medium">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <%= home.location %>
+                                </p>
+                            </div>
+                            <div class="flex items-center p-2 rounded-md">
+                                <p class="font-bold text-red-500">Rs <%= home.price %>/night</p>
+                            </div>
+                        </div>
+
+                        <!-- Description Features Favourite -->
+                        <div class="space-y-8">
+                            <div class="pb-4">
+                                <h3 class="text-black text-2xl font-medium mb-2">Description</h3>
+                                <p class="text-gray-700">
+                                    <%= home.description %>
+                                </p>
+                                <a href="#" class="text-blue-500 mt-4 font-medium block"><i class="fa-solid fa-download mr-2"></i>Download House Rules</a>
+                            </div>
+
+                            <div class="text-gray-700 space-y-1">
+                                <h3 class="text-black text-2xl font-medium mb-2">Features</h3>
+                                <p><i class="fas fa-check text-sm text-green-600"></i> Prime Location</p>
+                                <p><i class="fas fa-check text-sm text-green-600"></i> Highly Rated</p>
+                                <p><i class="fas fa-check text-sm text-green-600"></i> Modern Amenities</p>
+                                <p><i class="fas fa-check text-sm text-green-600"></i> Free Wifi</p>
+                            </div>
+
+                            <div class="text-center w-full">
+                                <form action="/favourites" method="POST">
+                                    <input type="hidden" name="id" value="<%= home._id %>" />
+                                    <button
+                                        class="text-white font-medium bg-red-500 w-full rounded-md p-2 hover:bg-red-600 transition duration-300 cursor-pointer">Add
+                                        to Favourite</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+    </body>
+
+    </html>

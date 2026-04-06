@@ -1,0 +1,169 @@
+<header class="bg-red-500 text-white p-4 shadow-md sticky top-0 z-10">
+  <nav class="container mx-auto">
+    <!-- Desktop Navigation -->
+    <div class="hidden sm:flex sm:justify-between md:items-center">
+      <ul class="flex items-center flex-wrap gap-1">
+        <li>
+          <a href="/"
+            class="<%= currentPage === 'index' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center">
+            <i class="fa-brands fa-airbnb mr-1"></i>
+            airbnb
+          </a>
+        </li>
+
+        <% if (isLoggedIn) { %>
+          <% if (user && user.userType==='guest' ) { %>
+            <li>
+              <a href="/homes"
+                class="<%= currentPage === 'home' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                  <i class="fa-solid fa-house mr-1"></i>
+                Homes
+              </a>
+            </li>
+
+            <li>
+              <a href="/favourites"
+                class="<%= currentPage === 'favourites' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                <i class="fa-solid fa-heart mr-1"></i>
+                Favourites
+              </a>
+            </li>
+
+            <li>
+              <a href="/bookings"
+                class="<%= currentPage === 'bookings' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                <i class="fa-regular fa-calendar mr-1"></i>
+                Bookings
+              </a>
+            </li>
+            <% } else { %>
+              <li>
+                <a href="/host/host-home-list"
+                  class="<%= currentPage === 'host-homes' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                  <i class="fa-solid fa-house-user mr-1"></i>
+                  Host Homes
+                </a>
+              </li>
+
+              <li>
+                <a href="/host/add-home"
+                  class="<%= currentPage === 'addHome' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                  <i class="fa-solid fa-plus mr-1"></i>
+                  Add Home
+                </a>
+              </li>
+              <% } %>
+                <% } %>
+      </ul>
+
+      <ul class="flex items-center gap-2">
+        <% if (!isLoggedIn) { %>
+          <li>
+            <a href="/signup"
+              class="<%= currentPage === 'signup' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-4 rounded-lg transition duration-300 border border-white">
+              SignUp
+            </a>
+          </li>
+          <li>
+            <!-- Why login bg-blue-500 not working? -->
+             <!-- Ans:  -->
+            <a href="/login"
+              class="<%= currentPage === 'login' ? 'font-bold' : 'hover:bg-red-50' %> bg-white font-medium text-red-500 py-2 px-4 rounded-lg transition duration-300">
+              Login
+            </a>
+          </li>
+          <% } else { %>
+            <li>
+              <form action="/logout" method="POST">
+                <button type="submit"
+                  class="hover:bg-red-400 py-2 px-4 rounded-lg transition duration-300 border border-white flex items-center cursor-pointer">
+                  <i class="fa-solid fa-right-from-bracket mr-1"></i>
+                  Logout
+                </button>
+              </form>
+            </li>
+            <% } %>
+      </ul>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div class="sm:hidden">
+      <div class="flex justify-between items-center">
+        <a href="/"
+          class="flex items-center py-2 px-3 rounded-lg transition duration-300 <%= currentPage === 'index' ? 'bg-red-600 font-medium' : '' %>">
+          <i class="fa-brands fa-airbnb mr-1"></i>
+          <span class="ml-1">airbnb</span>
+        </a>
+
+        <button id="mobile-menu-button" class="p-2 rounded-lg hover:bg-red-400">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="hidden mt-2">
+        <ul class="flex flex-col space-y-1 border-t border-red-400 pt-2 mt-2">
+          <% if (isLoggedIn) { %>
+            <li>
+              <a href="/homes"
+                class="<%= currentPage === 'Home' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-3 rounded-lg flex items-center">
+                Homes-List
+              </a>
+            </li>
+            <li>
+              <a href="/favourites"
+                class="<%= currentPage === 'favourites' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-3 rounded-lg flex items-center">
+                Favourites
+              </a>
+            </li>
+            <li>
+              <a href="/bookings"
+                class="<%= currentPage === 'bookings' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-3 rounded-lg flex items-center">
+                Bookings
+              </a>
+            </li>
+            <li>
+              <a href="/host/host-home-list"
+                class="<%= currentPage === 'host-homes' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-3 rounded-lg flex items-center">
+                Host Homes
+              </a>
+            </li>
+            <li>
+              <a href="/host/add-home"
+                class="<%= currentPage === 'addHome' ? 'bg-red-600 font-medium' : 'hover:bg-red-400' %> py-2 px-3 rounded-lg flex items-center">
+                Add Home
+              </a>
+            </li>
+            <li class="pt-2 border-t border-red-400 mt-2">
+              <form action="/logout" method="POST">
+                <button type="submit" class="hover:bg-red-400 w-full py-2 px-3 rounded-lg flex items-center">
+                  Logout
+                </button>
+              </form>
+            </li>
+            <% } else { %>
+              <li>
+                <a href="/signup" class="hover:bg-red-400 py-2 px-3 rounded-lg block">
+                  SignUp
+                </a>
+              </li>
+              <li>
+                <a href="/login" class="bg-white text-red-500 hover:bg-red-50 py-2 px-3 rounded-lg block mt-2">
+                  Login
+                </a>
+              </li>
+              <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document
+    .getElementById("mobile-menu-button")
+    ?.addEventListener("click", function () {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("hidden");
+    });
+</script>

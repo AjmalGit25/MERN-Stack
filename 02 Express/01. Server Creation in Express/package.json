@@ -1,0 +1,15 @@
+{
+  "name": "02.-server-create-2",
+  "version": "1.0.0",
+  "description": "server creation practice in express.js",
+  "license": "ISC",
+  "author": "ajmal hussain",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

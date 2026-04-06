@@ -1,0 +1,55 @@
+<header class="w-full bg-sky-500 h-35">
+  <h1 class="text-4xl text-red-500 text-center bg-sky-100 p-4 mb-3 font-medium shadow-lg">Welcome to Airbnb
+  </h1>
+  <button id="homeBtn"
+    class="font-medium mx-5 p-2 px-3 text-white rounded-md shadow-inner  hover:shadow-sky-300 hover:shadow-md"
+    :class="isHomeActive ? 'bg-sky-700' : 'font-normal'">Home</button>
+
+  <button id="addHomeBtn"
+    class="font-medium mx-5 p-2 px-3 text-white rounded-md shadow-inner hover:shadow-sky-300 hover:shadow-md"
+    :class="!isHomeActive ? 'bg-sky-700' : 'font-normal'">Add Home</button>
+    </button>
+
+</header>
+
+<!-- JS for changing active button -->
+<script>
+  const homeBtn = document.getElementById('homeBtn');
+  const addHomeBtn = document.getElementById('addHomeBtn');
+
+  // Load active state from localStorage or default to 'home'
+  let isHomeActive = localStorage.getItem('activePage') === 'home' || !localStorage.getItem('activePage');
+
+  function updateButtons() {
+    if (isHomeActive) {
+      homeBtn.classList.add('bg-sky-700');
+      homeBtn.classList.remove('font-normal');
+
+      addHomeBtn.classList.add('font-normal');
+      addHomeBtn.classList.remove('bg-sky-700');
+    } else {
+      homeBtn.classList.add('font-normal');
+      homeBtn.classList.remove('bg-sky-700');
+
+      addHomeBtn.classList.add('bg-sky-700');
+      addHomeBtn.classList.remove('font-normal');
+    }
+  }
+
+  homeBtn.addEventListener('click', () => {
+    isHomeActive = true;
+    localStorage.setItem('activePage', 'home');
+    updateButtons();
+    window.location.href = '/';   // Navigate to home
+  });
+
+  addHomeBtn.addEventListener('click', () => {
+    isHomeActive = false;
+    localStorage.setItem('activePage', 'add-home');
+    updateButtons();
+    window.location.href = '/add-home';   // Navigate to add home
+  });
+
+  // Initialize
+  updateButtons();
+</script>

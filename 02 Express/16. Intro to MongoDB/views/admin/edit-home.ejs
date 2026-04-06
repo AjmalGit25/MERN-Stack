@@ -1,0 +1,41 @@
+<%- include('../partials/head') %>
+  </head>
+
+  <body class="flex flex-wrap flex-col items-center">
+    <%- include('../partials/header') %>
+      <header>
+        <h1 class="text-black text-4xl p-4 font-medium shadow-lg rounded-lg mt-10">
+          <%= editing ? "Edit" : "Register" %> Your Home on AirBnB
+        </h1>
+      </header>
+
+      <main class="mt-10 p-6 rounded-lg shadow-lg w-full md:w-[75%] bg-white">
+        <form action="/<%= editing ? 'edit-home' : 'add-home' %>" method="POST">
+          <input type="hidden" name="id" value="<%= editing ? home._id : '' %>">
+          <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
+            type="text" id="houseName" name="houseName" value="<%= editing ? home.houseName : '' %>"
+            placeholder="Enter Your House Name" required><br>
+          <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
+            type="text" id="price" name="price" value="<%= editing ? home.price : '' %>" placeholder="Price Per Night"
+            required><br>
+          <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
+            type="text" id="locationName" name="locationName" value="<%= editing ? home.locationName : '' %>"
+            placeholder="Location" required><br>
+          <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
+            type="text" id="rating" name="rating" value="<%= editing ? home.rating : '' %>" placeholder="Rating"
+            required><br>
+          <input class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
+            type="text" id="photo" name="photoUrl" value="<%= editing ? home.photoUrl : '' %>" placeholder="Photo URL"
+            required><br>
+            <!-- description value is not showing when editing! -->
+            <textarea class="border border-gray-300 rounded-sm py-2 px-4 mb-4 w-full focus:outline-none focus:border-sky-500"
+            id="description" name="description"
+            placeholder="Describe Your Home"><%= editing ? home.description : '' %></textarea><br>
+          <input class="text-white font-medium bg-sky-500 py-2 px-4 w-full rounded-sm hover:bg-sky-600 cursor-pointer"
+            type="submit" value="<%= editing ? 'Update Home' : 'Add Home' %>">
+        </form>
+      </main>
+
+  </body>
+
+  </html>

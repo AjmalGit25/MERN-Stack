@@ -1,0 +1,23 @@
+{
+  "name": "practice1",
+  "version": "1.0.0",
+  "description": "practice kr raha",
+  "keywords": [
+    "sam"
+  ],
+  "license": "ISC",
+  "author": "ajmal hussain",
+  "type": "commonjs",
+  "main": "myJs2.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "execute": "node myJs2.js",
+    "ram": "node myJs2.js",
+    "start": "node myJs2.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.15.1",
+    "react": "^19.1.0"
+  }
+}

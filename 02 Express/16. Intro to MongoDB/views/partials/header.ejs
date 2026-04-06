@@ -1,0 +1,33 @@
+<!-- Navigation Panel -->
+<header class="w-full bg-sky-500 text-white font-medium p-4 shadow-md">
+  <nav class="container mx-auto flex justify-between items-center gap-4">
+    <ul class="md:flex md:space-x-4 space-y-4">
+      <li>
+        <a href="/" class="<%= currPage === 'index' ? 
+        'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300"><i class="fa-brands fa-airbnb"></i> AirBnB</a>
+      </li>
+      <li>
+        <a href="/homes" class="<%= currPage === 'homes' ? 
+        'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Home-List</a>
+      </li>
+      <li>
+        <a href="/favourites" class="<%= currPage === 'favourites' ? 
+        'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Favourites</a>
+      </li>
+      <li>
+        <a href="/bookings" class="<%= currPage === 'bookings' ? 
+        'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Bookings</a>
+      </li>
+      <li>
+        <a href="/admin-home-list" class="<%= currPage === 'admin-home' ? 
+        'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Admin Home</a>
+      </li>
+      <li>
+        <a href="/add-home" class="<%= currPage === 'add-home' ? 
+        'bg-sky-700 shadow-black shadow-md' : 'hover:bg-sky-400' %> py-2 px-4 rounded transition duration-300">Add Home</a>
+      </li>
+    </ul>
+    <!-- This item centered with flex-1 -->
+    <h1 class="text-sky-400 text-4xl font-bold text-center flex-1 sm:hidden hover:text-sky-300 transition duration-300 cursor-default">Ajmal Hussain</h1>
+  </nav>
+</header>

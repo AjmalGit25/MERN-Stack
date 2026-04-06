@@ -1,0 +1,20 @@
+{
+  "name": "12.-serving-html-files",
+  "version": "1.0.0",
+  "description": "How to serve html files using express",
+  "license": "ISC",
+  "author": "ajmal Hussain",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

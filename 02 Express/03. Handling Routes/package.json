@@ -1,0 +1,19 @@
+{
+  "name": "05.-handling-routes",
+  "version": "1.0.0",
+  "description": "handling routes in express",
+  "license": "ISC",
+  "author": "ajmal hussain",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

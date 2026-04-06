@@ -1,0 +1,29 @@
+<%- include('partials/head') %>
+  </head>
+
+  <body class="flex flex-wrap flex-col items-center">
+
+    <%- include('partials/header') %>
+      <marquee class="text-amber-700 bg-sky-200">Explore our listings and find your perfect stay!</marquee>
+
+      <h2 class="text-2xl text-sky-700 font-medium text-center w-full p-2 mt-5 mb-2">Your Added Home's List:</h2>
+
+      <div class="w-full lg:w-[50%] mx-auto px-5 bg-sky-500 lg:rounded-md shadow-lg">
+        <ul>
+          <% registeredHomes.forEach((home, index) => { let serialNum = index + 1 %>
+            <li class="w-full md:w-[75%] mx-auto my-3 py-2 bg-white rounded-md  hover:bg-red-300 cursor-pointer shadow-md flex justify-between">
+              <span class="text-left text-sky-600 w-[70%] font-medium pl-2">
+                <span class="text-black"><%= serialNum %>.</span> <%= home.houseName %>
+              </span>
+              <span class="text-right text-black text-base pt-1 pr-2">
+                <%= home.location %>
+              </span>
+            </li>
+            <% }); %>
+        </ul>
+      </div>
+
+
+  </body>
+
+  </html>

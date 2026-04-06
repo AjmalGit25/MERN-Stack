@@ -1,0 +1,23 @@
+{
+  "name": "15.-styling-using-tailwind-css",
+  "version": "1.0.0",
+  "description": "Learning TailwindCSS to use in Express.js",
+  "license": "ISC",
+  "author": "ajmal hussain",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.24",
+    "nodemon": "^3.1.11",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18"
+  }
+}
