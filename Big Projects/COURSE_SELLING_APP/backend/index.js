@@ -1,9 +1,16 @@
 import express from 'express';
+
 import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
 import { v2 as cloudinary } from 'cloudinary';
 import dotenv from "dotenv";
 dotenv.config();
+
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import fileUpload from 'express-fileupload';
+import { v2 as cloudinary } from 'cloudinary';
+
 
 
 import courseRouter from './routes/course.route.js';
@@ -13,6 +20,9 @@ import orderRouter from './routes/order.route.js';
 
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+
+
+dotenv.config();
 
 const port = process.env.PORT || 3000;
 const DB_URI = process.env.MONGO_URI;
@@ -40,6 +50,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
+
 
 console.log("Stripe Key:", process.env.STRIPE_SECRET_KEY);
 
