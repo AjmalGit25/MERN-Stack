@@ -6,13 +6,6 @@ import { v2 as cloudinary } from 'cloudinary';
 import dotenv from "dotenv";
 dotenv.config();
 
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import fileUpload from 'express-fileupload';
-import { v2 as cloudinary } from 'cloudinary';
-
-
-
 import courseRouter from './routes/course.route.js';
 import userRouter from './routes/user.route.js';
 import adminRouter from './routes/admin.route.js';
@@ -20,9 +13,6 @@ import orderRouter from './routes/order.route.js';
 
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-
-
-dotenv.config();
 
 const port = process.env.PORT || 3000;
 const DB_URI = process.env.MONGO_URI;
