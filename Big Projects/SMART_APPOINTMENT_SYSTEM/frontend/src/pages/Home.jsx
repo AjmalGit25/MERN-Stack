@@ -134,7 +134,7 @@ export default function Home() {
 
       {/* Footer */}
       <div style={{ borderTop: '1px solid var(--border)', background: 'var(--surface)', padding: '16px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 8 }}>
-        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>© 2025 SmartDoc — Built for Hackathon HealthTech Track</span>
+        <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>© 2026 SmartDoc — Built for Hackathon HealthTech Track</span>
         <span style={{ fontSize: 12, color: 'var(--text-muted)' }}>React + Node.js + MongoDB</span>
       </div>
     </div>

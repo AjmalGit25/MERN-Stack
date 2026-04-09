@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -30,6 +31,14 @@ export default function Login() {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 767px) {
+          .login-right { width: 100% !important; border-left: none !important; }
+        }
+        @media (min-width: 1000px) {
+          .login-hero { display: block !important; }
+        }
+      `}</style>
       <div style={S.page}>
 
         {/* ══ LEFT ══════════════════════════════════════════ */}
@@ -52,12 +61,20 @@ export default function Login() {
               </div>
             </div>
 
-            {/* Heading */}
-            <h1 style={S.heading}>
-              Intelligent<br />
-              <span style={{ color: '#60a5fa' }}>Healthcare</span><br />
-              Scheduling
-            </h1>
+            {/* Heading + Hero Image */}
+            <div style={S.headingRow}>
+              <h1 style={S.heading}>
+                Intelligent<br />
+                <span style={{ color: '#60a5fa' }}>Healthcare</span><br />
+                Scheduling
+              </h1>
+              <img
+                src="https://res.cloudinary.com/dcuziuhqp/image/upload/v1775774317/ajm_doc2_qtejxw.jpg"
+                alt="Doctor"
+                className="login-hero"
+                style={S.heroImg}
+              />
+            </div>
 
             <p style={S.desc}>
               Optimize scheduling, reduce waiting time, and improve
@@ -100,7 +117,7 @@ export default function Login() {
         </div>
 
         {/* ══ RIGHT ═════════════════════════════════════════ */}
-        <div style={S.right}>
+        <div style={S.right} className="login-right">
           {/* Theme toggle */}
           <button className="theme-toggle" onClick={toggle} style={S.themeBtn}>
             <i className={`bi ${theme === 'dark' ? 'bi-sun-fill' : 'bi-moon-stars-fill'}`}
@@ -292,10 +309,30 @@ const S = {
   statVal: { fontSize: 32, fontWeight: 900, color: '#60a5fa', letterSpacing: -1 },
   statLbl: { fontSize: 12, color: 'rgba(255,255,255,0.45)', marginTop: 3, fontWeight: 500 },
 
+  headingRow: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    gap: 26,
+  },
+
+  heroImg: {
+    display: 'none',
+    width: 200,
+    height: 200,
+    flexShrink: 0,
+    objectFit: 'cover',
+    objectPosition: 'top',
+    borderRadius: '50%',
+    boxShadow: '0 8px 40px rgba(59,130,246,0.45)',
+    border: '3px solid rgba(96,165,250,0.4)',
+  },
+
   /* Right */
   right: {
     width: '40%',
     flexShrink: 0,
+    flexGrow: 1,
     background: 'var(--surface)',
     borderLeft: '1px solid var(--border)',
     display: 'flex',
