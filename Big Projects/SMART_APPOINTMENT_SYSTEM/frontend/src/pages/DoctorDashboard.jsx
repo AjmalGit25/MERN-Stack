@@ -112,7 +112,7 @@ export default function DoctorDashboard() {
   };
   const handleCancel = async (id) => {
     if (!window.confirm('Cancel this appointment?')) return;
-    try { await appointmentAPI.cancel(id); fetchData(true); } catch (e) { console.error(e); }
+    try { await appointmentAPI.updateStatus(id, 'cancelled'); fetchData(true); } catch (e) { console.error(e); }
   };
   const handleToggle = async () => {
     try { const { data } = await doctorAPI.toggleAvailability(); setIsAvailable(data.isAvailable); }
@@ -132,14 +132,14 @@ export default function DoctorDashboard() {
 
   // ── Computed Data ────────────────────────────────────
   const todayAppts = appointments.filter(a => a.date === today);
-  const waiting = appointments.filter(a => a.status === 'waiting');
+  const waiting = appointments.filter(a => ['pending', 'confirmed', 'in-progress'].includes(a.status));
   const todayDone = todayAppts.filter(a => a.status === 'completed');
   const utilization = todayAppts.length > 0 ? Math.round((todayDone.length / todayAppts.length) * 100) : 0;
 
   // Donut chart data
   const donutData = [
     { name: 'Completed', value: appointments.filter(a => a.status === 'completed').length, color: '#12b76a' },
-    { name: 'Waiting', value: waiting.length, color: '#3b82f6' },
+    { name: 'Pending', value: appointments.filter(a => a.status === 'pending').length, color: '#3b82f6' },
     { name: 'Cancelled', value: appointments.filter(a => a.status === 'cancelled').length, color: '#f04438' },
     { name: 'No-Show', value: appointments.filter(a => a.status === 'no-show').length, color: '#94a3b8' },
   ].filter(d => d.value > 0);
@@ -275,7 +275,7 @@ export default function DoctorDashboard() {
                                 if (notesInput.id !== id) { setNotesInput({ id, value: '' }); return; }
                                 handleStatus(id, 'completed');
                               }}
-                              onNoShow={id => handleStatus(id, 'cancelled')}
+                              onNoShow={id => handleStatus(id, 'no-show')}
                               onCancel={handleCancel} />
                             {notesInput.id === a._id && (
                               <div style={{ padding: '8px 16px 12px', background: 'var(--success-light)', borderBottom: '1px solid var(--border)' }}>

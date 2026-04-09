@@ -41,11 +41,13 @@ export default function PatientDashboard() {
     try { await appointmentAPI.cancel(id); fetchData(true); } catch (e) { console.error(e); }
   };
 
-  const waiting = appointments.filter(a => a.status === 'waiting');
+  const waiting = appointments.filter(a => ['pending', 'confirmed', 'in-progress'].includes(a.status));
   const completed = appointments.filter(a => a.status === 'completed');
   const cancelled = appointments.filter(a => a.status === 'cancelled');
-  const filtered = filter === 'all' ? appointments : appointments.filter(a => a.status === filter);
-  const nextAppt = waiting.sort((a, b) => a.queuePosition - b.queuePosition)[0];
+  const filtered = filter === 'all' ? appointments : appointments.filter(a =>
+    filter === 'waiting' ? ['pending', 'confirmed', 'in-progress'].includes(a.status) : a.status === filter
+  );
+  const nextAppt = [...waiting].sort((a, b) => a.queuePosition - b.queuePosition)[0];
 
   return (
     <div>
@@ -192,9 +194,9 @@ export default function PatientDashboard() {
                                   </span>
                                 ) : <span style={{ color: 'var(--text-light)' }}>—</span>}
                               </td>
-                              <td>{STATUS_BADGE[a.status] || STATUS_BADGE.cancelled}</td>
+                              <td>{STATUS_BADGE[['pending','confirmed','in-progress'].includes(a.status) ? 'waiting' : a.status] || STATUS_BADGE.cancelled}</td>
                               <td>
-                                {a.status === 'waiting' && (
+                                {['pending', 'confirmed', 'in-progress'].includes(a.status) && (
                                   <button className="btn btn-outline-danger btn-sm" style={{ fontSize: 11, padding: '3px 9px' }}
                                     onClick={() => handleCancel(a._id)}>
                                     <i className="bi bi-x-lg" />
